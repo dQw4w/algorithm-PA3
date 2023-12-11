@@ -39,8 +39,9 @@ void BFS(Graph &G, int s){
     Q.push(s);
     while (!Q.empty()){
         int u = dequeue(Q);
+        Node &U = G.V[u];
         for (auto v: G.adj[u]){
-            Node &U = G.V[u];
+            
             Node &V = G.V[v];
             if (V.color == 'w'){
                 V.color = 'g';
@@ -49,11 +50,15 @@ void BFS(Graph &G, int s){
                 Q.push(v);
             }
         }
-        G.V[u].color = 'b';
+        U.color = 'b';
     }
     
 }
 int main(int argc, char* argv[]) {
+    // ./bin/cb inputs/
+    // for (int i = 0; i < 9; i ++){
+    //     cout << "./bin/cb inputs/public_case_" << i<< ".in outputs/" << i<< ".out" << endl;
+    // }
     if (argc != 3) {
         help_message();
         return 0;
